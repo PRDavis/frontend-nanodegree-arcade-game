@@ -1,14 +1,31 @@
 // variable for setting max number of Enemies
 
 var numEnemies=4;
+
+//array that holds all enemy instances
+var allEnemies[];
+
 // Enemies our player must avoid
-var Enemy = function() {
+
+function Enemy(){}
+this.x=0;
+this.y=row((Math.floor(Math.random() * (3-0)))); pick random row;
+this.height=81;//enemy hieght
+this.width;//enemy width
+this.speed=(Math.floor(Math.random() * (200 - 30)+30));
+this.sprite = 'images/enemy-bug.png';
+this.leftSide=x;
+this.rightSide=x+this.width;
+this.topSide=this.y;
+this.bottomSide=this.y+this.height;
+
+
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+
 }
 
 // Update the enemy's position, required method for game
