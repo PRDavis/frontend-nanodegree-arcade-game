@@ -19,7 +19,23 @@ this.rightSide=x+this.width;
 this.topSide=this.y;
 this.bottomSide=this.y+this.height;
 
-
+//
+//this function maps
+//row number to location
+//
+//
+function row(num)
+  {
+    if (num==0)
+    {
+      return 58;
+    }
+    else if(num==1)
+    {
+      return 140
+    }
+    else return 224;
+  }
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
