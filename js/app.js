@@ -78,12 +78,7 @@ Enemy.prototype.didCollide = function(enemy, player)
 var foe;
     for (foe=0;foe<allEnemies.length;foe++)
       {
-              // bug={
-              //      'top':   allEnemies[foe].y+SLIDE_BUG_Y,
-              //      'bottom': allEnemies[foe].y+SLIDE_BUG_Y+BUG_HEIGHT,
-              //      'right': allEnemies[foe].x+BUG_WIDTH-20,
-              //      'left': allEnemies[foe].x+20
-              // };
+
 console.log("****************************");
 console.log("here is the iterator", foe);
 console.log("****************************");
@@ -112,6 +107,15 @@ console.log("here is test 4 :",(player.bottomSide <=(allEnemies[foe].topSide)));
       }
   }
 
+
+  Enemy.prototype.collison = function(enemy,player)
+  {
+
+      {
+          player.reset();
+          return;
+      }
+  }
 
 
 
