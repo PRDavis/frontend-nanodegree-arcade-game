@@ -189,7 +189,52 @@ var Player = function()
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+function timer()
+  {
+    spawnTimer = setTimeout(function(){empty(),2000});
+    return;
+  }
 
+
+stopTimer = function()
+  {
+    clearTimeout(spawnTimer);
+    return;
+  }
+
+
+empty=function()
+  {
+    return; //empty dummy function
+  }
+
+function spawn()
+  {
+    // console.trace();
+    //  set up a loop for to iterate through number of enemies
+    for (var i = 0;i<numEnemies;i++)
+      {
+
+        //call the timer function
+
+        timer();
+
+        //push enemy instance into array
+
+        allEnemies.push(new Enemy());
+
+        //call the stop timer function
+        stopTimer();
+
+        //loop
+
+      }
+return;
+}
+
+spawn();
+
+var player =new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
