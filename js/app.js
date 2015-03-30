@@ -137,6 +137,54 @@ var Player = function()
     this.bottomSide = this.y + this.height;
 
   }
+
+  Player.prototype.update = function(xDist,yDist)
+  {
+    //check position to make sure on canvas
+    if (this.x + xDist >=0 && this.x +xDist <=404)
+      {
+        this.x+=xDist;
+      }
+    if (this.y + yDist >=-20 && this.y + yDist<=425)
+      {
+        this.y+=yDist;
+      }
+    return;
+  }
+
+  Player.prototype.reset = function()
+  {
+    this.x=202;
+    this.y=392;
+  }
+
+  Player.prototype.render = function()
+  {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    return;
+
+  }
+
+  Player.prototype.handleInput = function(keyCode)
+  {
+
+    switch (keyCode)
+    {
+      case 'left':
+      player.update(-101,0);
+      break;
+      case 'up':
+      player.update(0,-85);
+      break;
+      case 'right':
+      player.update(101,0);
+      break;
+      case 'down':
+      player.update(0,85);
+      break;
+      return;
+    }
+  }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
