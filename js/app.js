@@ -62,7 +62,7 @@ if (this.x >= 505)
     this.x=-102;
     //this.x=Math.random(Math.random) *(151-1)-175;
     this.y=row((Math.floor(Math.random() * (3 - 0))));
-    this.speed=(Math.floor(Math.random() * (200 - 30)+30));
+    this.speed=randSpeed();
     this.didCollide(this,player);
   }
 return;
@@ -72,6 +72,49 @@ return;
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
+Enemy.prototype.didCollide = function(enemy, player)
+  {
+var foe;
+    for (foe=0;foe<allEnemies.length;foe++)
+      {
+              // bug={
+              //      'top':   allEnemies[foe].y+SLIDE_BUG_Y,
+              //      'bottom': allEnemies[foe].y+SLIDE_BUG_Y+BUG_HEIGHT,
+              //      'right': allEnemies[foe].x+BUG_WIDTH-20,
+              //      'left': allEnemies[foe].x+20
+              // };
+console.log("****************************");
+console.log("here is the iterator", foe);
+console.log("****************************");
+console.log("here is player.leftSide :",player.leftSide);
+console.log("here is allEnemies[foe].rightSide :",allEnemies[foe].rightSide);
+console.log("here is player.rightSide :",player.rightSide);
+console.log("here is allEnemies[foe].leftSide :",allEnemies[foe].leftSide);
+console.log("here is player.topSide :",player.topSide);
+console.log("here is allEnemies[foe].bottomSide :",allEnemies[foe].bottomSide);
+console.log("here is player.bottomSide :",allEnemies[foe].topSide);
+
+console.log("here is test 1 :",(player.leftSide>(allEnemies[foe].rightSide)));
+console.log("here is test 2 :",(player.rightSide < (allEnemies[foe].leftSide)));
+console.log("here is test 3 :",(player.topSide>=(allEnemies[foe].bottomSide)));
+console.log("here is test 4 :",(player.bottomSide <=(allEnemies[foe].topSide)));
+
+
+        if((player.leftSide>(allEnemies[foe].rightSide) ||
+          player.rightSide < (allEnemies[foe].leftSide) ||
+          player.topSide>=(allEnemies[foe].bottomSide) ||
+          player.bottomSide <=(allEnemies[foe].topSide)))
+                {
+                enemy.collison(this,player);
+                }
+        return;
+      }
+  }
+
+
+
+
 
 // Now write your own player class
 // This class requires an update(), render() and
