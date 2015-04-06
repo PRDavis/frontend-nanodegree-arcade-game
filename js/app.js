@@ -2,11 +2,23 @@
 
 var numEnemies = 4;
 
+// variable for setting max number of Jewels
+
+var numJewels = 4;
+
 //array that holds all enemy instances
 var allEnemies = [];
+//array that holds all Jewel instances
+var allJewels = [];
 
-
+// var that holds the player score
+var score = 0;
+// var that holds the number of lives for the player
+var lives = 3;
 //
+//enemy collision flag
+
+var enemyCollision=false;
 //this function maps
 //row number to location
 //
@@ -22,13 +34,16 @@ function row(num) {
       return 236;
     }
 }
+//get x location of random column
+function col(num) {
+  var column=(num-1)*110;
+  return column;
+}
 
 // Enemies our player must avoid
 
 function Enemy() {
   this.x = 0;
-
-
   this.height = 83;//enemy hieght
   this.width = 101;//enemy width
   this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
@@ -41,7 +56,10 @@ function Enemy() {
   this.topSide = this.y;
   this.bottomSide = this.y + this.height;
   this.ind = allEnemies.indexOf(this);
+return;
 }
+
+
 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -79,7 +97,7 @@ Enemy.prototype.update = function (dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
+return;
 }
 
 
@@ -103,7 +121,7 @@ var Player = function()
     this.rightSide=this.x + this.width;
     this.topSide= this.y
     this.bottomSide = this.y + this.height;
-
+return;
   }
 
   Player.prototype.update = function(xDist,yDist)
@@ -116,36 +134,74 @@ var Player = function()
     if (this.y + yDist >=-23 && this.y + yDist<=425)
       {
         this.y += yDist;
-        if(yDist < 0 ){
+        if(yDist < 0 )
+        {
           this.row -= 1;
-        }else if (yDist !=0){
+        }
+        else if (yDist !=0)
+        {
           this.row += 1;
-      }
+        }
 
-  }
+      }
 // code to check for collision goes here
 
 //compare player row with enemy row
 // if they are the same, then see if x coords intersect
 
-for (var i = 0; i < allEnemies.length;i++)
-  {
-    if (player.row === allEnemies[i].boardRow)
+    for (var i = 0; i < allEnemies.length;i++)
       {
-        if (allEnemies[i].x > player.x -81 && allEnemies[i].x < player.x+player.width -20)
-        {
-          player.reset();
-        }
+        if (player.row === allEnemies[i].boardRow)
+          {
+            if (allEnemies[i].x > player.x -81 && allEnemies[i].x < player.x+player.width -20)
+              {
+                enemyCollision=true;
+                player.reset();
+              }
+          }
       }
+     
+
+// update canvas also
+
+ctx.font = "24px helvetica";
+ctx.fillStyle = "black";
+ctx.fillRect(5,2,200,25)
+ctx.fillStyle = "white";
+ctx.fillRect(5,2,200,25)
+ctx.fillStyle = "black";
+var scoreOutput="Score: "+score+" "+"Lives: "+lives;
+ctx.fillText(scoreOutput,10,22);
+
+return; 
+
+
+
+
+
+
+
+
   }
-    return;  
-}
 
   Player.prototype.reset = function()
   {
     this.x=202;
     this.y=405;
     this.row=5;
+    if (enemyCollision === true)
+      {
+        lives -- ;
+      }
+
+    enemyCollision=false;
+    if(lives <=0)
+      {
+      //print game over add game over function
+        prompt('press a key to play again?');
+        location.reload();
+      }
+    return;
   }
 
   Player.prototype.render = function()
@@ -188,24 +244,95 @@ function spawn()
 
         allEnemies.push(new Enemy());
       }
-return;
-}
+    return;
+  }
 
 
 
 var player =new Player();
 
 spawn();
+jewelSpawn();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+document.addEventListener('keyup', function(e) 
+  {
+    var allowedKeys = 
+      {
         37: 'left',
         38: 'up',
         39: 'right',
         40: 'down'
-    };
+      };
 
     player.handleInput(allowedKeys[e.keyCode]);
-});
+    return;
+  })
+
+
+
+
+// Enemies our player must avoid
+
+function Jewel() {
+  this.x = 0;
+  this.height = 83;//enemy hieght
+  this.width = 101;//enemy width
+  this.boardCol = Math.floor(Math.random() * (6 - 1)+1); //pick random row;
+  this.x = col(this.boardCol); //pick random row; 
+  this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
+  this.y = 60+row(this.boardRow); //pick random row;
+  this.gemCol = Math.floor(Math.random() * (4 - 1)+1);
+  this.sprite = whichJewel(this.gemCol); 
+  
+  
+
+return;
+}
+
+
+function whichJewel(num)
+  {
+    if (num === 1) 
+      {
+        var spr='images/Gem Blue.png'
+        return spr;
+      }
+    else if (num === 2) 
+    {
+        var spr='images/Gem Green.png'
+        return spr;
+    }
+      else 
+        {
+          var spr='images/Gem Orange.png'
+          return spr;
+        }
+  }
+
+
+
+
+ Jewel.prototype.render = function()
+  {
+    var locText="x: ="+ this.x + " y: ="+ this.y;
+    ctx.fillText(locText,this.x,this.y-10);
+
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 75,75);
+    return;
+  }
+
+
+
+function jewelSpawn()
+  {
+    //  set up a loop for to iterate through number of enemies
+    for (var i = 0;i<numJewels;i++)
+      {
+        //push enemy instance into array
+
+        allJewels.push(new Jewel());
+      }
+    return;
+  }

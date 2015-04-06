@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
+    canvas.width = 505; 
+    canvas.height = 606; 
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -153,6 +153,11 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        allJewels.forEach(function(jewel)  {
+            jewel.render();
+        })
+
     }
 
     /* This function does nothing but it could have been a good place to
