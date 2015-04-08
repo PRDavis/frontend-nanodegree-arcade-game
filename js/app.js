@@ -78,6 +78,12 @@ function jewelScore()
     return;
   }
 
+  function waterScore()
+  {
+    score += 250;
+    return;
+  }
+
 
 function randSpeed() {
   var i =  (Math.floor(Math.random() * (200 - 30) + 30));
@@ -200,7 +206,22 @@ ctx.fillText(scoreOutput,10,22);
 
 
 
-
+if(this.row === 0){
+  //go to score function
+waterScore();
+  // go to animation function
+waterAnim();
+  //increment enemies
+numEnemies++;
+//empty enemy array
+allEnemies.length=0;
+  //respawn enemies to get increment
+spawn();  
+  // spawn jewels
+  jewelSpawn();
+  //reset player
+  this.reset();
+}
 
 
 
@@ -369,6 +390,10 @@ function jewelSpawn()
     return;
   }
 
+function waterAnim()
+{
 
+  return;
+}
 
 
