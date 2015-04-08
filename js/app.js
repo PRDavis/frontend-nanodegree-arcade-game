@@ -72,7 +72,7 @@ return;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 
-function jewelRemove()
+function jewelScore()
   {
     score += 150;
     return;
@@ -181,7 +181,7 @@ return;
               {
                 jewelCollision=true;
                 allJewels.splice(i,1);
-                jewelRemove()
+                jewelScore()
                 
               }
           }
@@ -196,6 +196,15 @@ ctx.fillRect(5,2,300,25)
 ctx.fillStyle = "black";
 var scoreOutput="Score: "+score+" "+"Lives: "+lives;
 ctx.fillText(scoreOutput,10,22);
+
+
+
+
+
+
+
+
+
 
 return; 
 
