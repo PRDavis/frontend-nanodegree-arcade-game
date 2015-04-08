@@ -19,10 +19,15 @@ var lives = 3;
 //enemy collision flag
 
 var enemyCollision=false;
-
+// next power up
+var moreLifeInitial=2000;
+var moreLife=2000;
 
 //jewel collision flag
 var jewelCollision = false;
+
+//play level
+var level = 1;
 
 //this function maps
 //row number to location
@@ -65,7 +70,15 @@ return;
 }
 
 
-
+function powerUP()
+  {
+    if (score>=moreLife)
+      {
+        lives++;
+        moreLife+=moreLifeInitial;
+      }
+  return;
+  }
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -74,13 +87,16 @@ return;
 
 function jewelScore()
   {
+    
     score += 150;
+    powerUP();
     return;
   }
 
   function waterScore()
   {
     score += 250;
+     powerUP();
     return;
   }
 
@@ -196,11 +212,11 @@ return;
 
 ctx.font = "24px helvetica";
 ctx.fillStyle = "black";
-ctx.fillRect(5,2,300,25)
+ctx.fillRect(5,2,400,25)
 ctx.fillStyle = "white";
-ctx.fillRect(5,2,300,25)
+ctx.fillRect(5,2,400,25)
 ctx.fillStyle = "black";
-var scoreOutput="Score: "+score+" "+"Lives: "+lives;
+var scoreOutput="Score: "+score+" "+"Lives: "+lives+" "+"Level: "+level;
 ctx.fillText(scoreOutput,10,22);
 
 
@@ -217,8 +233,13 @@ numEnemies++;
 allEnemies.length=0;
   //respawn enemies to get increment
 spawn();  
+// empty jewel array
+allJewels.length=0;
   // spawn jewels
   jewelSpawn();
+//level up
+level++;
+
   //reset player
   this.reset();
 }
