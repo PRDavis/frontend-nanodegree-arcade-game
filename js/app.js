@@ -190,9 +190,9 @@ return;
 
 ctx.font = "24px helvetica";
 ctx.fillStyle = "black";
-ctx.fillRect(5,2,200,25)
+ctx.fillRect(5,2,300,25)
 ctx.fillStyle = "white";
-ctx.fillRect(5,2,200,25)
+ctx.fillRect(5,2,300,25)
 ctx.fillStyle = "black";
 var scoreOutput="Score: "+score+" "+"Lives: "+lives;
 ctx.fillText(scoreOutput,10,22);
@@ -306,7 +306,7 @@ function Jewel() {
   this.boardCol = Math.floor(Math.random() * (6 - 1)+1); //pick random row;
   this.x = col(this.boardCol); //pick random row; 
   this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
-  this.y = 40+row(this.boardRow); //pick random row;
+  this.y = 40+row(this.boardRow); //pick random row and adjust for size change;
   this.gemCol = Math.floor(Math.random() * (4 - 1)+1);
   this.sprite = whichJewel(this.gemCol); 
 
