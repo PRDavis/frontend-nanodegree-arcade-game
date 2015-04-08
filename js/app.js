@@ -19,6 +19,11 @@ var lives = 3;
 //enemy collision flag
 
 var enemyCollision=false;
+
+
+//jewel collision flag
+var jewelCollision = false;
+
 //this function maps
 //row number to location
 //
@@ -36,7 +41,7 @@ function row(num) {
 }
 //get x location of random column
 function col(num) {
-  var column=(num-1)*110;
+  var column=(num-1)*101;
   return column;
 }
 
@@ -67,7 +72,11 @@ return;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 
-
+function jewelRemove()
+  {
+    score += 150;
+    return;
+  }
 
 
 function randSpeed() {
@@ -161,7 +170,22 @@ return;
           }
       }
      
+//compare player row with jewel row
+// if they are the same, then see if x coords intersect
 
+    for (var i = 0; i < allJewels.length;i++)
+      {
+        if (player.row === allJewels[i].boardRow)
+          {
+            if (allJewels[i].x > player.x -81 && allJewels[i].x < player.x+player.width -20)
+              {
+                jewelCollision=true;
+                allJewels.splice(i,1);
+                jewelRemove()
+                
+              }
+          }
+      }
 // update canvas also
 
 ctx.font = "24px helvetica";
@@ -282,12 +306,11 @@ function Jewel() {
   this.boardCol = Math.floor(Math.random() * (6 - 1)+1); //pick random row;
   this.x = col(this.boardCol); //pick random row; 
   this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
-  this.y = 60+row(this.boardRow); //pick random row;
+  this.y = 40+row(this.boardRow); //pick random row;
   this.gemCol = Math.floor(Math.random() * (4 - 1)+1);
   this.sprite = whichJewel(this.gemCol); 
-  
-  
 
+  
 return;
 }
 
@@ -316,10 +339,10 @@ function whichJewel(num)
 
  Jewel.prototype.render = function()
   {
-    var locText="x: ="+ this.x + " y: ="+ this.y;
-    ctx.fillText(locText,this.x,this.y-10);
+    // var locText="x: ="+ this.x + " y: ="+ this.y;
+    // ctx.fillText(locText,this.x,this.y-10);
 
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 75,75);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 90,90);
     return;
   }
 
@@ -336,3 +359,7 @@ function jewelSpawn()
       }
     return;
   }
+
+
+
+
