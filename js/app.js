@@ -329,7 +329,7 @@ document.addEventListener('keyup', function(e)
       this.x = col(this.boardCol); //pick random row; 
       this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
       this.y = 40+row(this.boardRow); //pick random row and adjust for size change;
-      this.gemCol = Math.floor(Math.random() * (4 - 1)+1);
+      this.gemCol = Math.floor(Math.random() * (5 - 1)+1);
       this.sprite = whichJewel(this.gemCol); 
       return;
     }
@@ -345,6 +345,11 @@ document.addEventListener('keyup', function(e)
       else if (num === 2) 
         {
           var spr='images/Gem Green.png'
+          return spr;
+        }
+        else if (num === 3) 
+        {
+          var spr='images/Gem Red.png'
           return spr;
         }
       else 
