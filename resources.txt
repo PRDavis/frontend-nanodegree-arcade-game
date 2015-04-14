@@ -1,0 +1,109 @@
+
+
+
+» Using Multiple HTML5 Canvases as Layers
+http://html5.litten.com/using-multiple-html5-canvases-as-layers/
+
+html5 - canvas element - Multiple layers - Stack Overflow
+http://stackoverflow.com/questions/3008635/html5-canvas-element-multiple-layers
+
+Preloading image sequence on HTML5 Canvas - Stack Overflow
+http://stackoverflow.com/questions/22411994/preloading-image-sequence-on-html5-canvas
+
+Empty an array in JavaScript? - Stack Overflow
+http://stackoverflow.com/questions/1232040/empty-an-array-in-javascript
+
+Javascript Animation: Tutorial, Part 1 - Schillmania.com
+http://www.schillmania.com/content/projects/javascript-animation-1/
+
+JavaScript function declaration - Stack Overflow
+http://stackoverflow.com/questions/1866084/javascript-function-declaration
+
+JavaScript Hoisting
+http://www.w3schools.com/js/js_hoisting.asp
+
+JavaScript Prototypes
+http://www.w3schools.com/js/js_object_prototypes.asp
+
+JavaScript Array splice() Method
+http://www.w3schools.com/jsref/jsref_splice.asp
+
+Performance: alpha=0 VS visible=false - Phaser - HTML5 Game Devs Forum
+http://www.html5gamedevs.com/topic/11934-performance-alpha0-vs-visiblefalse/
+
+Flash: `sprite.visible = false` doesn't hide sprite immediately? - Stack Overflow
+http://stackoverflow.com/questions/5544619/flash-sprite-visible-false-doesnt-hide-sprite-immediately
+
+HTML canvas fillText() Method
+http://www.w3schools.com/tags/canvas_filltext.asp
+
+HTML canvas drawImage() Method
+http://www.w3schools.com/tags/canvas_drawimage.asp
+
+Location reload() Method
+http://www.w3schools.com/jsref/met_loc_reload.asp
+
+javascript - How to force a script reload and re-execute? - Stack Overflow
+http://stackoverflow.com/questions/9642205/how-to-force-a-script-reload-and-re-execute
+
+HTML5 Canvas
+http://www.w3schools.com/html/html5_canvas.asp
+
+html - HTML5 multiple canvas on a single page - Stack Overflow
+http://stackoverflow.com/questions/4020910/html5-multiple-canvas-on-a-single-page
+
+Best Way to Loop Through an Array in JavaScript - Sebastiano Armeli
+http://www.sebarmeli.com/blog/2010/12/06/best-way-to-loop-through-an-array-in-javascript/
+
+Math.random() - JavaScript | MDN
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+Office Hours: P2 and P3 - Google+
+https://plus.google.com/events/cuqm6fkubf0jv8aquh4u3rli4ic?cfem=1
+
+JavaScript Number toString() Method
+http://www.w3schools.com/jsref/jsref_tostring_number.asp
+
+Can text be added to a group? Or only sprites? - Phaser - HTML5 Game Devs Forum
+http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
+
+javascript sprite collision detection - Google Search
+https://www.google.com/webhp?source=search_app&gws_rd=ssl#q=javascript+sprite+collision+detection
+
+Javascript Char Codes (Key Codes) - Cambia Research
+http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+
+javascript - Chrome setTimeout() timing issues - Stack Overflow
+http://stackoverflow.com/questions/17627442/chrome-settimeout-timing-issues
+
+WindowTimers.setTimeout() - Web API Interfaces | MDN
+https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout
+
+JavaScript Timing Events
+http://www.w3schools.com/js/js_timing.asp
+
+JavaScript Array push() Method
+http://www.w3schools.com/jsref/jsref_push.asp
+
+JavaScript Prototypes
+http://www.w3schools.com/js/js_object_prototypes.asp
+
+HTML5 2D game development: Collision detection and sprite animations
+http://www.ibm.com/developerworks/library/wa-html5-game8/
+
+Javascript: Collision detection - Stack Overflow
+http://stackoverflow.com/questions/2440377/javascript-collision-detection
+
+Introduction to Object-Oriented JavaScript - JavaScript | MDN
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript
+
+Math.floor() - JavaScript | MDN
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+
+
+
+
+
+
+
+

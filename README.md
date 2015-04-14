@@ -1,6 +1,13 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
-
-for self-checking their submission.
+Game play begins with a board consisting of grass, stone and water.
+At the top of the board there are indicators showing the player's score, lives remaining and level.
+The player must travel to reach the water from the beginning point in the grass.
+You may move the player by using the arrow keys on your keyboard. 
+Up moves forward
+Left and right move ...um ... left and right. 
+Down moves backward (away from the water).
+Avoid the enemy bugs! Any contact with the bugs will take away a life and reset the player's location.
+Collect gems for additional points!.
+Each time you reach the water you go up a level
