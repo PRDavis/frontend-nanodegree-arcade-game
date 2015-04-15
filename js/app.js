@@ -33,24 +33,24 @@ var level = 1;
 //row number to location
 //
 //
-function row(num) 
+function row(num)
   {
-    if (num === 1) 
+    if (num === 1)
       {
         return 70;
       }
-    else if (num === 2) 
+    else if (num === 2)
       {
         return 153;
       }
-    else 
+    else
       {
         return 236;
       }
   }
 
 //get x location of random column
-function col(num) 
+function col(num)
   {
     var column=(num-1)*101;
     return column;
@@ -58,7 +58,7 @@ function col(num)
 
 // Enemies our player must avoid
 
-function Enemy() 
+function Enemy()
   {
     this.x = 0;
     this.height = 83;//enemy hieght
@@ -88,10 +88,10 @@ function powerUP()
   return;
   }
 
-
+//increase score for jewel collection and check if player should get a powerup
 function jewelScore()
   {
-    
+
     score += 150;
     powerUP();
     return;
@@ -106,7 +106,7 @@ function waterScore()
   }
 
 //randomize the speed of the enemies
-function randSpeed() 
+function randSpeed()
   {
     var i =  (Math.floor(Math.random() * (200 - 30) + 30));
     return i;
@@ -114,14 +114,14 @@ function randSpeed()
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function (dt) 
+// You should multiply any movement by the dt parameter
+// which will ensure the game runs at the same speed for
+// all computers.
+Enemy.prototype.update = function (dt)
   {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     this.x += (this.speed * dt);
     this.ind = allEnemies.indexOf(this);
-    if (this.x >= 505) 
+    if (this.x >= 505)
       {
         this.x = -102;
         this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
@@ -133,7 +133,7 @@ Enemy.prototype.update = function (dt)
   }
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() 
+Enemy.prototype.render = function()
   {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     return;
@@ -155,6 +155,11 @@ var Player = function()
     this.bottomSide = this.y + this.height;
     return;
   }
+//this function checks for valid moves,
+//updates the player position
+//then it checks for collisions with either
+//an enemy, jewel or the water
+
 
 Player.prototype.update = function(xDist,yDist)
   {
@@ -176,31 +181,30 @@ Player.prototype.update = function(xDist,yDist)
           }
 
       }
-// code to check for collision goes here
-
+// code to check for collision with enemy
 //compare player row with enemy row
 // if they are the same, then see if x coords intersect
 
     for (var i = 0; i < allEnemies.length;i++)
       {
-        if (player.row === allEnemies[i].boardRow)
+        if (this.row === allEnemies[i].boardRow)
           {
-            if (allEnemies[i].x > player.x -81 && allEnemies[i].x < player.x+player.width -20)
+            if (allEnemies[i].x > this.x -81 && allEnemies[i].x < this.x+this.width -20)
               {
                 enemyCollision=true;
-                player.reset();
+                this.reset();
               }
           }
       }
-     
+
 //compare player row with jewel row
 // if they are the same, then see if x coords intersect
 
     for (var i = 0; i < allJewels.length;i++)
       {
-        if (player.row === allJewels[i].boardRow)
+        if (this.row === allJewels[i].boardRow)
           {
-            if (allJewels[i].x > player.x -81 && allJewels[i].x < player.x+player.width -20)
+            if (allJewels[i].x > this.x -81 && allJewels[i].x < this.x+this.width -20)
               {
                 jewelCollision=true;
                 allJewels.splice(i,1);
@@ -208,32 +212,35 @@ Player.prototype.update = function(xDist,yDist)
               }
           }
       }
-    // update canvas also
+    // update canvas
     dashboardUpdate();
 
-    //did player make it to the water? 
+    //did player make it to the water?
     if(this.row === 0)
-    {
-      //go to score function
-      waterScore();
-      //increment enemies
-      numEnemies++;
-      //empty enemy array
-      allEnemies.length=0;
-      //respawn enemies to get increment
-      spawn();  
-      // empty jewel array
-      allJewels.length=0;
-      // spawn jewels
-      jewelSpawn();
-      //level up
-      level++;
-      //reset player
-      this.reset();
-    }
-    return; 
+      {
+        //go to score function
+        waterScore();
+        //increment enemies
+        numEnemies++;
+        //empty enemy array
+        allEnemies.length=0;
+        //respawn enemies to get increment
+        spawn();
+        // empty jewel array
+        allJewels.length=0;
+        // spawn jewels
+        jewelSpawn();
+        //level up
+        level++;
+        //reset player
+        this.reset();
+      }
+    return;
   }
-
+  //reset player to starting position
+  //check to see if this was due to enemy collision
+  // if so, decrement lives
+  // check to see if game over
   Player.prototype.reset = function()
     {
       this.x=202;
@@ -243,6 +250,7 @@ Player.prototype.update = function(xDist,yDist)
         {
           lives -- ;
         }
+      //reset enemy collision flag
       enemyCollision=false;
       if(lives <=0)
         {
@@ -252,11 +260,14 @@ Player.prototype.update = function(xDist,yDist)
         }
       return;
     }
+  // draws the player on the canvas
   Player.prototype.render = function()
     {
       ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
       return;
     }
+
+  // handles the directional input from the user
   Player.prototype.handleInput = function(keyCode)
     {
     switch (keyCode)
@@ -293,17 +304,16 @@ function spawn()
   }
 
 
-
+//create the player, enemies and jewels
 var player =new Player();
-
 spawn();
 jewelSpawn();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) 
+document.addEventListener('keyup', function(e)
   {
-    var allowedKeys = 
+    var allowedKeys =
       {
         37: 'left',
         38: 'up',
@@ -315,81 +325,70 @@ document.addEventListener('keyup', function(e)
     return;
   })
 
-
-
-
   // Jewel Class
-
-  function Jewel() 
+  function Jewel()
     {
       this.x = 0;
       this.height = 83;//enemy hieght
       this.width = 101;//enemy width
       this.boardCol = Math.floor(Math.random() * (6 - 1)+1); //pick random row;
-      this.x = col(this.boardCol); //pick random row; 
+      this.x = col(this.boardCol); //pick random row;
       this.boardRow = Math.floor(Math.random() * (4 - 1)+1); //pick random row;
       this.y = 40+row(this.boardRow); //pick random row and adjust for size change;
       this.gemCol = Math.floor(Math.random() * (5 - 1)+1);
-      this.sprite = whichJewel(this.gemCol); 
+      this.sprite = whichJewel(this.gemCol);
       return;
     }
 
-
+  //assign the sprite to the jewel instance based on the
+  //random number passed in
   function whichJewel(num)
     {
-      if (num === 1) 
+      if (num === 1)
         {
           var spr='images/Gem Blue.png'
           return spr;
         }
-      else if (num === 2) 
+      else if (num === 2)
         {
           var spr='images/Gem Green.png'
           return spr;
         }
-        else if (num === 3) 
+        else if (num === 3)
         {
           var spr='images/Gem Red.png'
           return spr;
         }
-      else 
+      else
         {
           var spr='images/Gem Orange.png'
           return spr;
         }
-    } 
+    }
+  //draw the jewels on the canvas
  Jewel.prototype.render = function()
   {
-    // var locText="x: ="+ this.x + " y: ="+ this.y;
-    // ctx.fillText(locText,this.x,this.y-10);
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 90,90);
     return;
   }
-
-
-
+  //create the jewels
   function jewelSpawn()
     {
-      //  set up a loop for to iterate through number of enemies
-      for (var i = 0;i<numJewels;i++)
+      //  set up a loop for to iterate through number of jewels
+      for (var i = 0; i<numJewels; i++)
         {
-          //push enemy instance into array
+          //push jewel instance into array
           allJewels.push(new Jewel());
         }
       return;
     }
 
 
-
+  //update the score, lives and level
   function dashboardUpdate()
     {
       ctx.font = "24px helvetica";
-      ctx.fillStyle = "black";
-      ctx.fillRect(5,2,400,25)
-      ctx.fillStyle = "white";
-      ctx.fillRect(5,2,400,25)
-      ctx.fillStyle = "black";
+      ctx.clearRect(5,2,400,25);
       var scoreOutput="Score: "+score+" "+"Lives: "+lives+" "+"Level: "+level;
       ctx.fillText(scoreOutput,10,22);
       return;
